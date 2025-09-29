@@ -1,0 +1,109 @@
+name: ai_generated_flutter_game
+description: AI Generated Flutter Game Template
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.13.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Game Engine
+  flame: ^1.10.0
+  
+  # UI Components
+  cupertino_icons: ^1.0.6
+  
+  # State Management
+  provider: ^6.0.5
+  
+  # Audio
+  audioplayers: ^5.2.1
+  
+  # Storage
+  shared_preferences: ^2.2.2
+  
+  # Animations
+  flutter_animate: ^4.2.0
+  
+  # Utilities
+  vector_math: ^2.1.4
+  
+  # HTTP Requests (if needed)
+  http: ^1.1.0
+  
+  # JSON Serialization
+  json_annotation: ^4.8.1
+  
+  # Device Info
+  device_info_plus: ^9.1.0
+  
+  # Vibration
+  vibration: ^1.8.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Linting
+  flutter_lints: ^3.0.1
+  
+  # Code Generation
+  build_runner: ^2.4.7
+  json_serializable: ^6.7.1
+  
+  # Testing
+  mockito: ^5.4.2
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  
+  # Game Assets
+  assets:
+    - assets/images/
+    - assets/audio/
+    - assets/data/
+    - assets/fonts/
+  
+  # Custom Fonts
+  fonts:
+    - family: GameFont
+      fonts:
+        - asset: assets/fonts/game_font_regular.ttf
+        - asset: assets/fonts/game_font_bold.ttf
+          weight: 700
+    
+    - family: UIFont
+      fonts:
+        - asset: assets/fonts/ui_font_regular.ttf
+        - asset: assets/fonts/ui_font_light.ttf
+          weight: 300
+        - asset: assets/fonts/ui_font_bold.ttf
+          weight: 700
+
+# Flutter Build Configuration
+flutter_build:
+  # Android specific settings
+  android:
+    minSdkVersion: 21
+    targetSdkVersion: 34
+    compileSdkVersion: 34
+    
+  # iOS specific settings
+  ios:
+    deploymentTarget: '12.0'
+    
+# Performance optimizations
+flutter_performance:
+  # Enable tree shaking
+  tree_shake_icons: true
+  
+  # Optimize for size
+  split_debug_info: true
+  
+  # Enable obfuscation in release
+  obfuscate: true
