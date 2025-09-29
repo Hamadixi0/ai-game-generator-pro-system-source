@@ -8,7 +8,7 @@ class GameCodeGenerator {
 
   async generateGameCode(gameName, platform) {
     try {
-      const prompt = `Generate a ${platform} game code for a game named ${gameName}.`;
+      const prompt = `Generate a ${platform} game code for a game called ${gameName}.`;
 
       const response = await axios.post(
         this.apiUrl,
