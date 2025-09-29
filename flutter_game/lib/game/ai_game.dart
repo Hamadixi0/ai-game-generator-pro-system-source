@@ -1,10 +1,11 @@
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/collisions.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class AIGame extends FlameGame with HasTapDetectors, HasCollisionDetection {
+class AIGame extends FlameGame with HasTapCallbacks, HasCollisionDetection {
   late Player player;
   late TextComponent scoreText;
   int score = 0;
@@ -77,13 +78,13 @@ class AIGame extends FlameGame with HasTapDetectors, HasCollisionDetection {
   }
   
   @override
-  bool onTapDown(TapDownInfo info) {
-    player.moveTo(info.eventPosition.global);
+  bool onTapDown(TapDownEvent event) {
+    player.moveTo(event.localPosition);
     return true;
   }
 }
 
-class Player extends RectangleComponent with CollisionCallbacks {
+class Player extends RectangleComponent with HasCollisionDetection, CollisionCallbacks {
   late Vector2 targetPosition;
   final double speed = 200;
   
@@ -121,7 +122,7 @@ class Player extends RectangleComponent with CollisionCallbacks {
   }
 }
 
-class Obstacle extends RectangleComponent with CollisionCallbacks {
+class Obstacle extends RectangleComponent with HasCollisionDetection, CollisionCallbacks {
   final double speed = 150;
   
   @override
@@ -139,7 +140,7 @@ class Obstacle extends RectangleComponent with CollisionCallbacks {
     position.y += speed * dt;
     
     // Remove when off screen
-    if (position.y > gameRef.size.y + 100) {
+    if (position.y > parent!.size.y + 100) {
       removeFromParent();
     }
   }
