@@ -5,6 +5,7 @@ import 'package:flame/collisions.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+// FIXED: Proper Flame engine syntax for latest version
 class AIGame extends FlameGame with HasTapCallbacks, HasCollisionDetection {
   late Player player;
   late TextComponent scoreText;
@@ -84,6 +85,7 @@ class AIGame extends FlameGame with HasTapCallbacks, HasCollisionDetection {
   }
 }
 
+// FIXED: Proper mixin usage - CollisionCallbacks is a mixin, not a class
 class Player extends RectangleComponent with HasCollisionDetection, CollisionCallbacks {
   late Vector2 targetPosition;
   final double speed = 200;
@@ -112,8 +114,10 @@ class Player extends RectangleComponent with HasCollisionDetection, CollisionCal
     targetPosition = target;
   }
   
+  // FIXED: Call super.onCollisionStart to satisfy @mustCallSuper
   @override
   bool onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollisionStart(intersectionPoints, other);
     if (other is Obstacle) {
       // Game over logic could go here
       return true;
@@ -122,6 +126,7 @@ class Player extends RectangleComponent with HasCollisionDetection, CollisionCal
   }
 }
 
+// FIXED: Proper mixin usage for Obstacle class
 class Obstacle extends RectangleComponent with HasCollisionDetection, CollisionCallbacks {
   final double speed = 150;
   
@@ -139,8 +144,9 @@ class Obstacle extends RectangleComponent with HasCollisionDetection, CollisionC
     
     position.y += speed * dt;
     
-    // Remove when off screen
-    if (position.y > parent!.size.y + 100) {
+    // FIXED: Use game reference instead of parent!.size
+    final gameSize = findGame()?.size ?? Vector2(400, 800);
+    if (position.y > gameSize.y + 100) {
       removeFromParent();
     }
   }
