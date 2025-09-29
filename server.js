@@ -16,7 +16,7 @@ app.post('/generate-game', (req, res) => {
   res.json({ message: `Game ${gameName} for ${platform} is being generated.` });
 });
 
-// Start Server
+// Start server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
